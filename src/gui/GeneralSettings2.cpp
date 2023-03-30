@@ -178,6 +178,10 @@ wxPanel* GeneralSettings2::AddGeneralPage(wxNotebook* notebook)
 			m_disable_screensaver = new wxCheckBox(box, wxID_ANY, _("Disable screen saver"));
 			m_disable_screensaver->SetToolTip(_("Prevents the system from activating the screen saver or going to sleep while running a game."));
 			second_row->Add(m_disable_screensaver, 0, botflag, 5);
+
+			m_use_custom_fscreen = new wxCheckBox(box, wxID_ANY, _("Custom fullscreen toggle key"));
+			m_use_custom_fscreen->SetToolTip(_("Pressing a user specified key will toggle fullscreen mode."));
+			second_row->Add(m_use_custom_fscreen, 0, botflag, 5);
 #ifdef BOOST_OS_MACOS
 			m_disable_screensaver->SetValue(false);
 			m_disable_screensaver->Enable(false);
@@ -864,6 +868,7 @@ void GeneralSettings2::StoreConfig()
 	auto& config = GetConfig();
 
 	config.use_discord_presence = m_discord_presence->IsChecked();
+	config.use_custom_fscreen_key = m_use_custom_fscreen->IsChecked();
 	config.fullscreen_menubar = m_fullscreen_menubar->IsChecked();
 	config.check_update = m_auto_update->IsChecked();
 	config.save_screenshot = m_save_screenshot->IsChecked();
@@ -1500,6 +1505,7 @@ void GeneralSettings2::ApplyConfig()
 	m_save_padwindow_position_size->SetValue(config.pad_position != Vector2i{-1,-1});
 
 	m_discord_presence->SetValue(config.use_discord_presence);
+	m_use_custom_fscreen->SetValue(config.use_custom_fscreen_key);
 	m_fullscreen_menubar->SetValue(config.fullscreen_menubar);
 
 	m_auto_update->SetValue(config.check_update);
