@@ -240,6 +240,47 @@ wxPanel* GeneralSettings2::AddGeneralPage(wxNotebook* notebook)
 
 	return panel;
 }
+wxPanel* GeneralSettings2::AddHotkeysPage(wxNotebook* notebook)
+{
+	auto* panel = new wxPanel(notebook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+	auto* hotkeys_panel_sizer = new wxBoxSizer(wxVERTICAL);
+	
+	{
+		auto* hotkeys_row = new wxFlexGridSizer(0, 2, 0, 0);
+		hotkeys_row->SetFlexibleDirection(wxBOTH);
+		hotkeys_row->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
+
+		// replace text with wxEmptyString for now, just proof of concept stuff
+
+		hotkeys_row->Add(new wxStaticText(panel, wxID_ANY, _("Enter/Toggle Fullscreen"), wxDefaultPosition, wxDefaultSize, 0), 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+		auto* fullscreen_text_ctrl = new wxTextCtrl(panel, wxID_ANY, "F11", wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB);
+		hotkeys_row->Add(fullscreen_text_ctrl);
+
+		hotkeys_row->Add(new wxStaticText(panel, wxID_ANY, _("Exit Fullscreen"), wxDefaultPosition, wxDefaultSize, 0), 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+		auto* exit_fullscreen_text_ctrl = new wxTextCtrl(panel, wxID_ANY, "Esc", wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB);
+		hotkeys_row->Add(exit_fullscreen_text_ctrl);
+
+		hotkeys_row->Add(new wxStaticText(panel, wxID_ANY, _("Change Gamepad/TV View"), wxDefaultPosition, wxDefaultSize, 0), 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+		auto* switchview_text_ctrl = new wxTextCtrl(panel, wxID_ANY, "Ctrl+Tab", wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB);
+		hotkeys_row->Add(switchview_text_ctrl);
+
+		hotkeys_row->Add(new wxStaticText(panel, wxID_ANY, _("Seperate Gamepad View"), wxDefaultPosition, wxDefaultSize, 0), 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+		auto* seperategamepad_text_ctrl = new wxTextCtrl(panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB);
+		hotkeys_row->Add(seperategamepad_text_ctrl);
+
+		//hotkeys_row->Add(new wxStaticText(panel, wxID_ANY, _("Seperate Gamepad View"), wxDefaultPosition, wxDefaultSize, 0), 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+		//auto* seperategamepad_text_ctrl = new wxTextCtrl(panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB);
+		//hotkeys_row->Add(seperategamepad_text_ctrl);
+
+		hotkeys_panel_sizer->Add(hotkeys_row, 0, wxALL | wxEXPAND, 5);
+	}
+
+	panel->SetSizerAndFit(hotkeys_panel_sizer);
+
+	return panel;
+
+	return panel;
+}
 
 wxPanel* GeneralSettings2::AddGraphicsPage(wxNotebook* notebook)
 {
@@ -831,6 +872,7 @@ GeneralSettings2::GeneralSettings2(wxWindow* parent, bool game_launched)
 	auto* notebook = new wxNotebook(this, wxID_ANY);
 
 	notebook->AddPage(AddGeneralPage(notebook), _("General"));
+	notebook->AddPage(AddHotkeysPage(notebook), _("Hotkeys"));
 	notebook->AddPage(AddGraphicsPage(notebook), _("Graphics"));
 	notebook->AddPage(AddAudioPage(notebook), _("Audio"));	
 	notebook->AddPage(AddOverlayPage(notebook), _("Overlay"));
