@@ -52,6 +52,7 @@ void CemuConfig::Load(XMLConfigParser& parser)
 	
 	language = parser.get<sint32>("language", wxLANGUAGE_DEFAULT);
 	use_discord_presence = parser.get("use_discord_presence", true);
+	use_custom_fscreen_key = parser.get("use_custom_fscreen_key", false);
 	fullscreen_menubar = parser.get("fullscreen_menubar", false);
 	check_update = parser.get("check_update", check_update);
 	save_screenshot = parser.get("save_screenshot", save_screenshot);
@@ -356,6 +357,7 @@ void CemuConfig::Save(XMLConfigParser& parser)
 	config.set<bool>("permanent_storage", permanent_storage);
 	config.set<sint32>("language", language);
 	config.set<bool>("use_discord_presence", use_discord_presence);
+	config.set<bool>("use_custom_fscreen_key", use_custom_fscreen_key);
 	config.set<bool>("fullscreen_menubar", fullscreen_menubar);
 	config.set<bool>("check_update", check_update);
 	config.set<bool>("save_screenshot", save_screenshot);
