@@ -363,6 +363,7 @@ struct CemuConfig
 	
 	ConfigValue<sint32> language{ wxLANGUAGE_DEFAULT };
 	ConfigValue<bool> use_discord_presence{ true };
+	ConfigValue<bool> use_custom_fscreen_key{ false };
 	ConfigValue<std::string> mlc_path {};
 	ConfigValue<bool> fullscreen_menubar{ false };
 	ConfigValue<bool> fullscreen{ false };
