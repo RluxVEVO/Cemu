@@ -30,6 +30,7 @@ private:
 	
 	wxPanel* AddGeneralPage(wxNotebook* notebook);
 	wxPanel* AddGraphicsPage(wxNotebook* notebook);
+	wxPanel* AddHotkeysPage(wxNotebook* notebook);
 	wxPanel* AddAudioPage(wxNotebook* notebook);
 	wxPanel* AddOverlayPage(wxNotebook* notebook);
 	wxPanel* AddAccountPage(wxNotebook* notebook);
